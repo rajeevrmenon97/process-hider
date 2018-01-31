@@ -7,4 +7,4 @@ install:
 clean:
 	sed -n '/\/usr\/local\/lib\/libprochide\.so/!p' /etc/ld.so.preload > temp
 	mv -f temp /etc/ld.so.preload
-	rm -f /usr/local/lib/libprochide.so
+	rm -f /usr/local/lib/libprochide.so hidelib.c
