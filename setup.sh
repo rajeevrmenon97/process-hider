@@ -1,9 +1,11 @@
 #!/bin/bash
+echo "Enter process count: "
 read processCount
 if ! [[ "$processCount" =~ ^[0-9]+$ ]]
     then
         echo "Sorry integers only"
 fi
+echo "Enter the process names: "
 for (( i=1; i<=processCount; i++ ))
 do
     read line
